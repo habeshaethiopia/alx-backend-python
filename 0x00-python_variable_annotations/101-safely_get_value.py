@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """annotation"""
-from typing import Mapping, Any, Union
+from typing import Mapping, Any, Union, TypeVar
 
 T = TypeVar("T")
 Res = Union[Any, T]
