@@ -2,10 +2,12 @@
 """annotation"""
 from typing import Mapping, Any, Union
 
+T = TypeVar("T")
+Res = Union[Any, T]
+Def = Union[T, None]
 
-def safely_get_value(
-    dct: Mapping, key: Any, default: Union[~T, NoneType] = None
-) -> Union[Any, ~T]:
+
+def safely_get_value(dct: Mapping, key: Any, default: Def = None) -> Res:
     """the function"""
     if key in dct:
         return dct[key]
