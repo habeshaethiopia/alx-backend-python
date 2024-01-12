@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """a type-annotated function"""
-
 from typing import Union
 
 
