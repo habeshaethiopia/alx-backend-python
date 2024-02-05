@@ -7,7 +7,13 @@ from utils import (
     get_json,
     memoize,
 )
-from typing import Any, Dict, List, Tuple, Union
+from typing import (
+    Dict,
+    Union,
+    Tuple,
+    Sequence,
+    Mapping,
+)
 
 
 class TestAccessNestedMap(TestCase):
