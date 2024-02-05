@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """test_utils.py"""
 from unittest import TestCase
+from unittest.mock import patch, Mock as mock
+
 from parameterized import parameterized
 from utils import (
     access_nested_map,
@@ -14,6 +16,7 @@ from typing import (
     Sequence,
     Mapping,
 )
+
 
 
 class TestAccessNestedMap(TestCase):
@@ -47,7 +50,7 @@ class TestAccessNestedMap(TestCase):
             access_nested_map(nested_map, path)
 
 
-class TestGetJson(unittest.TestCase):
+class TestGetJson(TestCase):
     """Test get_json"""
 
     @parameterized.expand(
@@ -64,7 +67,7 @@ class TestGetJson(unittest.TestCase):
             mock_request.assert_called_once_with(test_url)
 
 
-class TestMemoize(unittest.TestCase):
+class TestMemoize(TestCase):
     """Test memoize"""
 
     def test_memoize(self) -> None:
@@ -73,14 +76,14 @@ class TestMemoize(unittest.TestCase):
         class TestClass:
             """Test class"""
 
-            def __init__(self) -> None:
-                self._a = 0
+            def a_method(self) -> int:
+                """a method"""
+                return 42
 
             @memoize
-            def a(self) -> int:
+            def a_property(self) -> int:
                 """a method"""
-                self._a += 1
-                return self._a
+                return self.a_method()
 
         with patch.object(
             TestClass,
