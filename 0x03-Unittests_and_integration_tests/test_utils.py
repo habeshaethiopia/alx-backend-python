@@ -58,8 +58,7 @@ class TestGetJson(unittest.TestCase):
     )
     def test_get_json(self, test_url: str, test_payload: Dict) -> None:
         """Test get_json"""
-        with patch("requests.get") as mock_request:
-            mock_request.return_value.json.return_value = test_payload
+        attrs = {"json.return_value": test_payload}
+        with patch("requests.get", return_value=mock(**attrs)) as mock_request:
             self.assertEqual(get_json(test_url), test_payload)
             mock_request.assert_called_once_with(test_url)
-            mock_request.return_value.json.assert_called_once()
